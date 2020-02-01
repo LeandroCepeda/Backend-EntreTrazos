@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+    <main>
+        <div class="container-fluid m-5 m-md-0">
+            <h1 class="mt-4">Usuarios</h1>
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Registro de Usuarios</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable"  cellspacing="0">
+                            <thead>
+                                <tr>
+				                     <th>Nombre</th>
+				                     <th>Apellido</th>
+				                     <th>Contraseña</th>
+				                     <th>Email</th>
+				                     <th>Fecha de Nacimiento</th>
+				                     <th>Editar</th>
+				                     <th>Eliminar</th>
+				                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+				                     <th>Nombre</th>
+				                     <th>Apellido</th>
+				                     <th>Contraseña</th>
+				                     <th>Email</th>
+				                     <th>Fecha de Nacimiento</th>
+				                     <th>Editar</th>
+				                     <th>Eliminar</th>
+				                </tr>
+                            </tfoot>
+                            <tbody>
+				                 <tr th:each="usuario : ${usuarios}">
+				                     <td th:text="${usuario.nombre}"></td>
+				                     <td th:text="${usuario.apellido}"></td>
+				                     <td th:text="${usuario.password}"></td>
+				                     <td th:text="${usuario.email}"></td>
+				                     <td th:text="${usuario.fechaNacimiento}"></td>
+				                     <td>
+				                         <a class="btn btn-warning" th:href="@{/usuario/editar/} + ${usuario.id}">Editar <i class="fa fa-edit"></i></a>
+				                     </td>
+				                     <td>
+				                         <form th:action="@{/usuario/eliminar}" method="POST">
+				                             <input type="hidden" name="id" th:value="${usuario.id}"/>
+				                             <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+				                             </button>
+				                         </form>
+				                     </td>
+				                 </tr>
+				             </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

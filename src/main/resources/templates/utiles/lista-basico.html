@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+    <main>
+        <div class="container-fluid m-5 m-md-0">
+            <h1 class="mt-4">Libros</h1>
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Registro de Libros</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable"  cellspacing="0">
+                            <thead>
+                                <tr>
+                     <th>ISBN</th>
+                     <th>Titulo</th>
+                     <th>Editorial</th>
+                     <th>Precio</th>
+                     <th>Estado</th>
+                     <th>Editar</th>
+                     <th>Eliminar</th>
+                 </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                     <th>ISBN</th>
+                     <th>Titulo</th>
+                     <th>Editorial</th>
+                     <th>Precio</th>
+                     <th>Estado</th>
+                     <th>Editar</th>
+                     <th>Eliminar</th>
+                 </tr>
+                            </tfoot>
+                            <tbody>
+                 <tr th:each="libro : ${libros}">
+                     <td th:text="${libro.isbn}"></td>
+                     <td th:text="${libro.titulo}"></td>
+                     <td th:text="${libro.editorial}"></td>
+                     <td th:text="${libro.precio}"></td>
+                     <td th:text="${libro.estado}"></td>
+                     <td>
+                         <a class="btn btn-warning" th:href="@{/libro/editar/} + ${libro.id}">Editar <i class="fa fa-edit"></i></a>
+                     </td>
+                     <td>
+                         <form th:action="@{/libro/eliminar}" method="POST">
+                             <input type="hidden" name="id" th:value="${libro.id}"/>
+                             <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                             </button>
+                         </form>
+                     </td>
+                 </tr>
+             </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+<body th:replace="home :: body">
+
+<div layout:fragment="content" class="mb-5">
+                <main>
+                    <div class="container-fluid m-5 m-md-0">
+                        <h1 class="mt-4">Categorías</h1>
+                        <h3>Agregar Categoría</h3>
+                        <div th:classappend="'alert-' + (${mensaje!= null} ? success : null)" th:if="${mensaje != null}" 
+					     th:text="${mensaje}" class="alert">  <!-- th:classappend me a�ade una clase si se cumple la condicion, en este caso si clase != null entonces agrega alert + lo que traiga clase!-->
+			  			</div>
+		
+						<form class="my-4" th:object="${categoria}" th:action="@{/categoria/agregar}" method="post">
+						
+							<div class="form-group">
+								<label for="nombre">Nombre</label>
+								<input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+				                       placeholder="Escribe el nombre de la categor�a" type="text"
+				                       class="form-control">
+				                <div class="alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre Incorrecto</div>
+							</div>
+				            
+				            <button class="btn btn-success" type="submit">Guardar</button>
+				            &nbsp;<a class="btn btn-warning" th:href="@{/categoria/lista}">Ver todos</a>
+						
+						</form>
+                    </div>
+                </main>
+            </div>
+
+</body>
+</html>

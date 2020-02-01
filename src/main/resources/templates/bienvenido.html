@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+	<div class="m-5">
+		<h2 class="font-weight-bold">Bienvenido al Panel de Control de EntreTrazos</h1>
+		<h5>Para realizar operaciones de administracion utilice la barra ubicada en la parte izquierda.</h2>
+		<div class="mt-5">
+			<h6>Las operaciones que puede realizar son:</h6>
+			<ul>
+			<li><p>Crear Registros</p></li>
+			<li><p>Leer Registros</p></li>
+			<li><p>Actualizar Registros</p></li>
+			<li><p>Eliminar Registros</p></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

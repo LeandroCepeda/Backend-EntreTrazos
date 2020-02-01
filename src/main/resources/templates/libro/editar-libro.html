@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+	<main>
+    <div class="container-fluid m-5 m-md-0">
+        <h2>Editar Libro</h2>
+        <form th:object="${libro}" th:action="@{/libro/editar/} + ${libro.id}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input autocomplete="off" autofocus th:field="*{isbn}" id="isbn"
+                       placeholder="Escribe el ISBN del libro" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('isbn')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{isbn}"></div>
+            </div>
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input autocomplete="off" th:field="*{titulo}" id="titulo" placeholder="Escribe el titulo del libro"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('titulo')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{titulo}"></div>
+            </div>
+            <div class="form-group">
+                <label for="editorial">Editorial</label>
+                <input autocomplete="off" th:field="*{editorial}" id="editorial"
+                       placeholder="Editoral del libro" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('editorial')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{editorial}"></div>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input autocomplete="off" th:field="*{precio}" id="precio" placeholder="Precio del libro"
+                       type="number"
+                       class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <input autocomplete="off" th:field="*{estado}" id="estado" placeholder="Estado del libro"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('estado')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{estado}"></div>
+            </div>
+            <button class="btn btn-success" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-warning" th:href="@{/libro/lista}">Ver todos</a>
+        </form>
+    </div>
+</main>
+</div>
+
+</body>
+</html>

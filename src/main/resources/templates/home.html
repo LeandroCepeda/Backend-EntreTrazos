@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragmentos/head :: head"></head>    
+<body class="sb-nav-fixed" th:fragment="body">
+<nav th:replace="fragmentos/nav :: nav" ></nav>
+<div th:replace="fragmentos/sidebar :: sidebar"></div>
+<footer th:replace="fragmentos/footer :: footer"></footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+<body th:replace="home :: body">
+
+	<div layout:fragment="content">
+         <main>
+             <div class="container-fluid m-5 m-md-0">
+                 <h1 class="mt-4">Libros</h1>
+                 <h3>Agregar Libro</h3>
+                 <div th:classappend="'alert-' + (${mensaje!= null} ? success : null)" th:if="${mensaje != null}" 
+			     th:text="${mensaje}" class="alert">  <!-- th:classappend me aï¿½ade una clase si se cumple la condicion, en este caso si clase != null entonces agrega alert + lo que traiga clase!-->
+	  			</div>
+
+				<form class="my-4" th:object="${libro}" th:action="@{/libro/agregar}" method="post">
+				
+					<div class="form-group">
+						<label for="isbn">ISBN</label>
+						<input autocomplete="off" autofocus th:field="*{isbn}" id="isbn"
+				                     placeholder="Escribe el ISBN del producto" type="text"
+				                     class="form-control">
+				        <div class="alert-danger" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN Incorrecto</div>
+					</div>
+					
+					<div class="form-group">
+				              <label for="titulo">Título</label>
+				              <input autocomplete="off" th:field="*{titulo}" id="titulo" placeholder="Escribe el título del libro"
+				                     type="text"
+				                     class="form-control">
+				          </div>
+				          
+				          <div class="form-group">
+				              <label for="titulo">Editorial</label>
+				              <input autocomplete="off" th:field="*{editorial}" id="editorial" placeholder="Escribe la editorial del libro"
+				                     type="text"
+				                     class="form-control">
+				          </div>
+				          
+				          <div class="form-group">
+				              <label for="precio">Precio</label>
+				              <input autocomplete="off" th:field="*{precio}" id="precio" placeholder="Escribe el precio del libro"
+				                     type="text"
+				                     class="form-control">
+				          </div>
+				          
+				          <div class="form-group">
+				              <label for="precio">Estado</label>
+				              <input autocomplete="off" th:field="*{estado}" id="estado" placeholder="Escribe el estado del libro"
+				                     type="text"
+				                     class="form-control">
+				          </div>
+				          
+				          <button class="btn btn-success" type="submit">Guardar</button>
+				          &nbsp;<a class="btn btn-warning" th:href="@{/libro/lista}">Ver todos</a>
+				
+				</form>
+              </div>
+          </main>
+      </div>
+</body>
+</html>
