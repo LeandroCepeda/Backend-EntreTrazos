@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+	<main>
+    <div class="container-fluid m-5 m-md-0">
+        <h2>Editar Usuario</h2>
+        <form th:object="${usuario}" th:action="@{/usuario/editar/} + ${usuario.id}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+                       placeholder="Escribe el nombre del usuario" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input autocomplete="off" th:field="*{apellido}" id="apellido" placeholder="Escribe el apellido del usuario"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('apellido')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{apellido}"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input autocomplete="off" th:field="*{password}" id="password"
+                       placeholder="Contraseña del usuario" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{password}"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input autocomplete="off" th:field="*{email}" id="email" placeholder="Email del usuario"
+                       type="email"
+                       class="form-control" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{email}"></div>
+            </div>
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input autocomplete="off" th:field="*{fechaNacimiento}" id="fechaNacimiento" placeholder="Fecha de nacimiento del usuario"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('fechaNacimiento')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{fechaNacimiento}"></div>
+            </div>
+            <button class="btn btn-success" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-warning" th:href="@{/usuario/lista}">Ver todos</a>
+        </form>
+    </div>
+</main>
+</div>
+
+</body>
+</html>

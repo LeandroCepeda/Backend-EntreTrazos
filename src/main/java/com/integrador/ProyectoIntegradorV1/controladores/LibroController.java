@@ -77,13 +77,13 @@ public class LibroController {
 	}
 	
 	@PostMapping(value="/editar/{id}")
-	public String actualizarLibro(@ModelAttribute @Valid Libro libro, BindingResult bindingResult, RedirectAttributes redir) {
+	public String actualizarLibro(@ModelAttribute @Valid Libro libro,@PathVariable int id, BindingResult bindingResult, RedirectAttributes redir) {
 		if(bindingResult.hasErrors()) {
 			return "libro/editar-libro";
 		}
 		
 		try {
-			libroServicio.save(libro);
+			libroServicio.update(id,libro);
 			redir.addFlashAttribute("mensaje", "El libro se editó correctamente");
 			
 		} catch (Exception e) {
@@ -97,8 +97,8 @@ public class LibroController {
 	public String eliminarLibro(@ModelAttribute Libro libro, RedirectAttributes redir) {
 		
 		try {
-			redir.addFlashAttribute("mensaje", "Eliminado correctamente");
 			libroServicio.delete(libro.getId());
+			redir.addFlashAttribute("mensaje", "Eliminado correctamente");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

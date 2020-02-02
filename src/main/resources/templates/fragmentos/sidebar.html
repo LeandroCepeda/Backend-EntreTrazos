@@ -13,26 +13,28 @@
                     
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                         ><div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                        Libros
+                        LIBROS
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                     ></a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" th:href="@{/libro/agregar}">Agregar Libro</a>
-                            <a class="nav-link" th:href="@{/libro/lista}">Editar Libro</a>
-                        	<a class="nav-link" th:href="@{/libro/lista}">Mostrar Libros</a></nav>
+                            <a class="nav-link" th:href="@{/libro/agregar}"><div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>Agregar Libro</a>
+                            <a class="nav-link" th:href="@{/libro/lista}"><div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>Editar Libro</a>
+                            <a class="nav-link" th:href="@{/libro/lista}"><div class="sb-nav-link-icon"><i class="far fa-trash-alt"></i></div>Eliminar Libro</a>
+                        	<a class="nav-link" th:href="@{/libro/lista}"><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Libros</a></nav>
                     </div>
 
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoria" aria-expanded="false" aria-controls="collapseLayouts"
                         ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Categorías
+                        CATEGORÍAS
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                     ></a>
                     <div class="collapse" id="categoria" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" th:href="@{/categoria/agregar}">Agregar Categoría</a>
-                            <a class="nav-link" th:href="@{/categoria/lista}">Editar Categoría</a>
-                        	<a class="nav-link" th:href="@{/categoria/lista}">Mostrar Categorías</a></nav>
+                            <a class="nav-link" th:href="@{/categoria/agregar}"><div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>Agregar Categoría</a>
+                            <a class="nav-link" th:href="@{/categoria/lista}"><div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>Editar Categoría</a>
+                            <a class="nav-link" th:href="@{/categoria/lista}"><div class="sb-nav-link-icon"><i class="far fa-trash-alt"></i></div>Eliminar Categoría</a>
+                        	<a class="nav-link" th:href="@{/categoria/lista}"><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Categorías</a></nav>
                     </div>
 
                     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
@@ -43,34 +45,36 @@
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <a class="nav-link collapsed" th:href="@{/categoria/agregar}" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
-                                >Agregar Categoría</a>
+                                ><div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>Agregar Categoría</a>
                             <a class="nav-link collapsed" th:href="@{/categoria/lista}"  data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
-                                >Mostrar Categorías</a>
+                                ><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Categorías</a>
                         </nav>
                     </div> -->
 
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#autor" aria-expanded="false" aria-controls="collapseLayouts"
                     ><div class="sb-nav-link-icon"><i class="fas fa-pencil-alt"></i></div>
-                    Autores
+                    AUTORES
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="autor" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" th:href="@{/autor/agregar}">Agregar Autor</a>
-                            <a class="nav-link" th:href="@{/autor/lista}">Editar Autor</a>
-                        	<a class="nav-link" th:href="@{/autor/lista}">Mostrar Autores</a></nav>
+                            <a class="nav-link" th:href="@{/autor/agregar}"><div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>Agregar Autor</a>
+                            <a class="nav-link" th:href="@{/autor/lista}"><div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>Editar Autor</a>
+                            <a class="nav-link" th:href="@{/autor/lista}"><div class="sb-nav-link-icon"><i class="far fa-trash-alt"></i></div>Eliminar Autor</a>
+                        	<a class="nav-link" th:href="@{/autor/lista}"><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Autores</a></nav>
                     </div>
                     
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usuario" aria-expanded="false" aria-controls="collapseLayouts"
                         ><div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                        Usuarios
+                        USUARIOS
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                     ></a>
                     <div class="collapse" id="usuario" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" th:href="@{/usuario/agregar}">Agregar Usuario</a>
-                            <a class="nav-link" th:href="@{/usuario/lista}">Editar Usuario</a>
-                        	<a class="nav-link" th:href="@{/usuario/lista}">Mostrar Usuarios</a></nav>
+                            <a class="nav-link" th:href="@{/usuario/agregar}"><div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>Agregar Usuario</a>
+                            <a class="nav-link" th:href="@{/usuario/lista}"><div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>Editar Usuario</a>
+                            <a class="nav-link" th:href="@{/usuario/lista}"><div class="sb-nav-link-icon"><i class="far fa-trash-alt"></i></div>Eliminar Usuario</a>
+                        	<a class="nav-link" th:href="@{/usuario/lista}"><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Usuarios</a></nav>
                     </div>
                 </div>
             </div>

@@ -67,14 +67,20 @@ public class LibroServicio implements ILibroServicio {
 	@Override
 	public Libro update(int id, Libro libro) throws Exception {
 		Optional<Libro> optional = libroRepositorio.findById(id);
+		Libro libroActualizado = new Libro();
 		
 		try {
-			Libro libro1 = optional.get();
+			libroActualizado = optional.get();
 			
 			if(libroRepositorio.existsById(id)) {
-				libro1.setId(libro.getId());
-				libroRepositorio.save(libro1);
-				return libro1;
+				libroActualizado.setId(libro.getId());
+				libroActualizado.setIsbn(libro.getIsbn());
+				libroActualizado.setTitulo(libro.getTitulo());
+				libroActualizado.setEditorial(libro.getEditorial());
+				libroActualizado.setPrecio(libro.getPrecio());
+				libroActualizado.setEstado(libro.getEstado());
+				libroRepositorio.save(libroActualizado);
+				return libroActualizado;
 			} else {
 				throw new Exception();
 			}

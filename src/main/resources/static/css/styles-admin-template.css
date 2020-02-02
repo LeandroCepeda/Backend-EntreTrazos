@@ -785,6 +785,18 @@ body {
   background-color: #e9ecef;
 }
 
+/*PROPIOS*/
+
 .color-nav {
 	background-color: #e3b04b;
 }
+
+nav.sb-sidenav-menu-nested a {
+	font-size: 14.5px;
+}
+
+nav.sb-sidenav-menu-nested a:hover {
+	background-color : rgba(255, 255, 255, 0.5);
+	transition: all 0.8s ease;
+}
+ 
