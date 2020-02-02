@@ -22,6 +22,7 @@
                      <th>Editorial</th>
                      <th>Precio</th>
                      <th>Estado</th>
+                     <th>Autor</th>
                      <th>Editar</th>
                      <th>Eliminar</th>
                  </tr>
@@ -33,6 +34,7 @@
                      <th>Editorial</th>
                      <th>Precio</th>
                      <th>Estado</th>
+                     <th>Autor</th>
                      <th>Editar</th>
                      <th>Eliminar</th>
                  </tr>
@@ -44,6 +46,7 @@
                      <td th:text="${libro.editorial}"></td>
                      <td th:text="${libro.precio}"></td>
                      <td th:text="${libro.estado}"></td>
+                     <td th:text="${libro.autor?.nombre}"></td> <!-- si el autor es nulo, obtengo unae exception, por eso haga una referencia nula segura -->
                      <td>
                          <a class="btn btn-warning" th:href="@{/libro/editar/} + ${libro.id}">Editar <i class="fa fa-edit"></i></a>
                      </td>

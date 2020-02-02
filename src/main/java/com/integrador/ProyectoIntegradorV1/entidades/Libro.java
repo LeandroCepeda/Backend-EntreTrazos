@@ -1,10 +1,14 @@
 package com.integrador.ProyectoIntegradorV1.entidades;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "libro")
@@ -26,7 +30,9 @@ public class Libro {
 	
 //	private Imagen imagen;
 //	
-//	private Autor autor;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_autor")
+	private Autor autor;
 //	
 //	private Categoria categoria;
 
@@ -44,7 +50,7 @@ public class Libro {
 		this.precio = precio;
 		this.estado = estado;
 //		this.imagen = imagen;
-//		this.autor = autor;
+		this.autor = autor;
 //		this.categoria = categoria;
 	}
 
@@ -119,14 +125,14 @@ public class Libro {
 //	}
 //
 //	
-//	public Autor getAutor() {
-//		return autor;
-//	}
-//
-//	
-//	public void setAutor(Autor autor) {
-//		this.autor = autor;
-//	}
+	public Autor getAutor() {
+		return autor;
+	}
+
+	
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 //
 //	
 //	public Categoria getCategoria() {

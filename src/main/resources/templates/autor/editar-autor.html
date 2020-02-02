@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+	<main>
+    <div class="container-fluid m-5 m-md-0">
+        <h2>Editar Autor</h2>
+        <form th:object="${autor}" th:action="@{/autor/editar/} + ${autor.id}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+                       placeholder="Escribe el nombre del autor" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{nombre}"></div>
+            </div>
+            <button class="btn btn-success" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-warning" th:href="@{/autor/lista}">Ver todos</a>
+        </form>
+    </div>
+</main>
+</div>
+
+</body>
+</html>

@@ -79,6 +79,7 @@ public class LibroServicio implements ILibroServicio {
 				libroActualizado.setEditorial(libro.getEditorial());
 				libroActualizado.setPrecio(libro.getPrecio());
 				libroActualizado.setEstado(libro.getEstado());
+				libroActualizado.setAutor(libro.getAutor());
 				libroRepositorio.save(libroActualizado);
 				return libroActualizado;
 			} else {

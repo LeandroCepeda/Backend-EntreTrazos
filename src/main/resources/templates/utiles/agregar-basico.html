@@ -9,6 +9,9 @@
                     <div class="container-fluid m-5 m-md-0">
                         <h1 class="mt-4">Libros</h1>
                         <h3>Agregar Libro</h3>
+                        <div th:classappend="'alert-' + (${mensaje!= null} ? success : null)" th:if="${mensaje != null}" 
+			     th:text="${mensaje}" class="alert alert-success">  <!-- th:classappend me a�ade una clase si se cumple la condicion, en este caso si clase != null entonces agrega alert + lo que traiga clase!-->
+	  			</div>
 		
 						<form class="my-4" th:object="${libro}" th:action="@{/libro/agregar}" method="post">
 						
