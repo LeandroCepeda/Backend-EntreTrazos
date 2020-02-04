@@ -1,12 +1,14 @@
 package com.integrador.ProyectoIntegradorV1.entidades;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -18,6 +20,7 @@ public class Libro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable = false, length = 150)
 	private String isbn;
 	
 	private String titulo;
@@ -28,13 +31,17 @@ public class Libro {
 	
 	private String estado;
 	
-//	private Imagen imagen;
-//	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_imagen")
+	private Imagen imagen;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_autor")
 	private Autor autor;
-//	
-//	private Categoria categoria;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_categoria")
+	private Categoria categoria;
 
 	
 	public Libro() {
@@ -49,9 +56,9 @@ public class Libro {
 		this.editorial = editorial;
 		this.precio = precio;
 		this.estado = estado;
-//		this.imagen = imagen;
+		this.imagen = imagen;
 		this.autor = autor;
-//		this.categoria = categoria;
+		this.categoria = categoria;
 	}
 
 	
@@ -115,16 +122,16 @@ public class Libro {
 	}
 
 	
-//	public Imagen getImagen() {
-//		return imagen;
-//	}
-//
-//	
-//	public void setImagen(Imagen imagen) {
-//		this.imagen = imagen;
-//	}
-//
-//	
+	public Imagen getImagen() {
+		return imagen;
+	}
+
+	
+	public void setImagen(Imagen imagen) {
+		this.imagen = imagen;
+	}
+
+	
 	public Autor getAutor() {
 		return autor;
 	}
@@ -133,15 +140,15 @@ public class Libro {
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
-//
-//	
-//	public Categoria getCategoria() {
-//		return categoria;
-//	}
-//
-//	
-//	public void setCategoria(Categoria categoria) {
-//		this.categoria = categoria;
-//	}
+
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 }

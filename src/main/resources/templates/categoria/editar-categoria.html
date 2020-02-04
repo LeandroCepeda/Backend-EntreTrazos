@@ -8,13 +8,13 @@
 <div layout:fragment="content">
 	<main>
     <div class="container-fluid m-5 m-md-0">
-        <h2>Editar Categor�a</h2>
+        <h2>Editar Categoría</h2>
         <form th:object="${categoria}" th:action="@{/categoria/editar/} + ${categoria.id}" method="post">
             <input type="hidden" th:field="*{id}">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
-                       placeholder="Escribe el nombre del categoria" type="text"
+                       placeholder="Escribe el nombre del categoría" type="text"
                        class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
                 <div class="invalid-feedback" th:errors="*{nombre}"></div>
             </div>

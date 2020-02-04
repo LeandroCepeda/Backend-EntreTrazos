@@ -52,6 +52,20 @@
                        class="form-control" th:classappend="${#fields.hasErrors('autor.nombre')} ? 'is-invalid' : ''">
                 <div class="invalid-feedback" th:errors="*{autor.nombre}"></div>
             </div>
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <input autocomplete="off" th:field="*{categoria.nombre}" id="categoria" placeholder="Nombre de la categoria del libro"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('categoria.nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{categoria.nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input autocomplete="off" th:field="*{imagen.url}" id="imagen" placeholder="URL de la imagen del libro"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('imagen.url')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{imagen.url}"></div>
+            </div>
             <button class="btn btn-success" type="submit">Guardar</button>
             &nbsp;<a class="btn btn-warning" th:href="@{/libro/lista}">Ver todos</a>
         </form>

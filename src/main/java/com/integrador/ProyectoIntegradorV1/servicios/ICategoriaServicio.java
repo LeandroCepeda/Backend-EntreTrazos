@@ -15,5 +15,7 @@ public interface ICategoriaServicio {
 	public Categoria update(int id, Categoria categoria) throws Exception;
 	
 	public boolean delete(int id) throws Exception;
+	
+	public Categoria findByNombre(String nombre) throws Exception;
 
 }

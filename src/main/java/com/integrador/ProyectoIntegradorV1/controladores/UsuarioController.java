@@ -1,6 +1,6 @@
 package com.integrador.ProyectoIntegradorV1.controladores;
 
-import java.util.List;
+
 
 import javax.validation.Valid;
 
@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.integrador.ProyectoIntegradorV1.entidades.Categoria;
+
 import com.integrador.ProyectoIntegradorV1.entidades.Usuario;
 import com.integrador.ProyectoIntegradorV1.servicios.IUsuarioServicio;
-import com.integrador.ProyectoIntegradorV1.serviciosimpl.UsuarioServicio;
 
 @Controller
 @RequestMapping(value="/usuario")

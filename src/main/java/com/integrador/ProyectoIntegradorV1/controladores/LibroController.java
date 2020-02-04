@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.integrador.ProyectoIntegradorV1.entidades.Autor;
+import com.integrador.ProyectoIntegradorV1.entidades.Categoria;
 import com.integrador.ProyectoIntegradorV1.entidades.Libro;
 import com.integrador.ProyectoIntegradorV1.servicios.IAutorServicio;
+import com.integrador.ProyectoIntegradorV1.servicios.ICategoriaServicio;
 import com.integrador.ProyectoIntegradorV1.servicios.ILibroServicio;
 
 @Controller
@@ -31,6 +33,11 @@ public class LibroController {
 	@Autowired
 	@Qualifier("AutorServicio")
 	private IAutorServicio autorServicio;
+	
+	@Autowired
+	@Qualifier("CategoriaServicio")
+	private ICategoriaServicio categoriaServicio;
+
 	
 	//PAGINA DE BIENVENIDA
 	@GetMapping(value ="")
@@ -51,16 +58,27 @@ public class LibroController {
 			return "libro/agregar-libro";
 		}
 		
-		//CODIGO PARA QUE NO ME REPITA AUTORES, CUANDO CREO LIBROS CON EL MISMO AUTOR (TAMBIEN SE HACE CUANDO EDITO UN LIBRO)
-		Autor autor = autorServicio.findByNombre(libro.getAutor().getNombre());
-		if(autor != null) {
-			libro.setAutor(autor);
-			libroServicio.save(libro); // ME VA A PERSISTIR EL LIBRO JUNTO CON EL AUTOR
-			redir.addFlashAttribute("mensaje", "El producto se agrego correctamente, y se asocio a un autor ya creado");
-		} else {
-			libroServicio.save(libro);
-			redir.addFlashAttribute("mensaje", "El producto se agrego correctamente, y creo un nuevo autor");
+		//CODIGO PARA QUE NO ME REPITA AUTORES NI CATEGORIAS, CUANDO CREO LIBROS CON EL MISMO AUTOR/CATEGORIAS (TAMBIEN SE HACE CUANDO EDITO UN LIBRO)
+		try {
+			
+//			Autor autor = autorServicio.findByNombre(libro.getAutor().getNombre());
+//			if(autor != null) {
+//				libro.setAutor(autor);
+//			}
+//			
+//			Categoria categoria = categoriaServicio.findByNombre(libro.getCategoria().getNombre());
+//			if(categoria != null) {
+//				libro.setCategoria(categoria);	 
+//			}
+			
+			libroServicio.save(libro); //ME GUARDA EL LIBRO JUNTO CON EL AUTOR Y LA CATEGORIA
+			redir.addFlashAttribute("mensaje", "El producto se agrego correctamente");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
+		
 		return "redirect:/libro/agregar";
 	}
 	
@@ -97,13 +115,7 @@ public class LibroController {
 		}
 	
 		try {
-			Autor autor = autorServicio.findByNombre(libro.getAutor().getNombre());
-			if(autor != null) {
-				libro.setAutor(autor);
-				libroServicio.update(id,libro);
-			} else {
-				libroServicio.update(id, libro);
-			}
+			libroServicio.update(id,libro);
 			redir.addFlashAttribute("mensaje", "El libro se editó correctamente");
 			
 		} catch (Exception e) {

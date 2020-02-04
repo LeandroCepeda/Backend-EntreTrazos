@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.integrador.ProyectoIntegradorV1.entidades.Autor;
-import com.integrador.ProyectoIntegradorV1.entidades.Autor;
-import com.integrador.ProyectoIntegradorV1.entidades.Autor;
-import com.integrador.ProyectoIntegradorV1.entidades.Autor;
 import com.integrador.ProyectoIntegradorV1.repositorios.AutorRepositorio;
 import com.integrador.ProyectoIntegradorV1.servicios.IAutorServicio;
 

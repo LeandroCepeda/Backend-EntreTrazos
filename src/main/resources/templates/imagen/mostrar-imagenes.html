@@ -7,15 +7,15 @@
 <div layout:fragment="content">
     <main>
         <div class="container-fluid m-5 m-md-0">
-            <h1 class="mt-4">Categorías</h1>
+            <h1 class="mt-4">Imagenes</h1>
             <div class="card mb-4">
-                <div class="card-header"><i class="fas fa-table mr-1"></i>Registro de Categorías</div>
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Registro de Imagenes</div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable"  cellspacing="0">
                             <thead>
                                 <tr>
-				                     <th>Nombre</th>
+				                     <th>URL</th>
 				                     <th>Editar</th>
 				                     <th>Eliminar</th>
 
@@ -23,20 +23,20 @@
                             </thead>
                             <tfoot>
                                 <tr>
-				                     <th>Nombre</th>
+				                     <th>URL</th>
 				                     <th>Editar</th>
 				                     <th>Eliminar</th>
 				                </tr>
                             </tfoot>
                             <tbody>
-				                 <tr th:each="categoria : ${categorias}">
-				                     <td th:text="${categoria.nombre}"></td>
+				                 <tr th:each="imagen : ${imagenes}">
+				                     <td th:text="${imagen.url}"></td>
 				                     <td>
-				                         <a class="btn btn-warning" th:href="@{/categoria/editar/} + ${categoria.id}">Editar <i class="fa fa-edit"></i></a>
+				                         <a class="btn btn-warning disabled" th:href="@{/imagen/editar/} + ${imagen.id}">Editar <i class="fa fa-edit"></i></a>
 				                     </td>
 				                     <td>
-				                         <form th:action="@{/categoria/eliminar}" method="POST">
-				                             <input type="hidden" name="id" th:value="${categoria.id}"/>
+				                         <form th:action="@{/imagen/eliminar}" method="POST">
+				                             <input type="hidden" name="id" th:value="${imagen.id}"/>
 				                             <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
 				                             </button>
 				                         </form>

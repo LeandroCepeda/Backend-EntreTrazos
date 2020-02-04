@@ -91,4 +91,9 @@ public class CategoriaServicio implements ICategoriaServicio {
 		}
 	}
 
+	@Override
+	public Categoria findByNombre(String nombre) throws Exception {
+		return categoriaRepositorio.findByNombre(nombre);
+	}
+
 }
