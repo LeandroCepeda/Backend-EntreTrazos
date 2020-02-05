@@ -62,6 +62,27 @@ public class LibroServicio implements ILibroServicio {
 		}
 		
 	}
+	
+	
+	@Override
+	public List<Libro> findAllByCategory(String categoria) throws Exception {
+		try {
+			Categoria categoriaLibro = categoriaServicio.findByNombre(categoria);
+			List<Libro> librosCategoria = new ArrayList<>();
+			
+			for (Libro libro : libroRepositorio.findAll()) {
+				if(libro.getCategoria().equals(categoriaLibro)) {
+					librosCategoria.add(libro);
+				}	
+			}
+			
+			return librosCategoria;
+			
+		} catch (Exception e) {
+			throw new Exception();
+		}
+		
+	}
 
 	
 	@Override
@@ -148,6 +169,9 @@ public class LibroServicio implements ILibroServicio {
 			throw new Exception();
 		}
 	}
+
+
+
 	
 	
 	

@@ -1,4 +1,4 @@
-package com.integrador.ProyectoIntegradorV1.controladoresRest;
+	package com.integrador.ProyectoIntegradorV1.controladoresRest;
 
 import java.util.List;
 
@@ -14,52 +14,50 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.integrador.ProyectoIntegradorV1.entidades.Libro;
-import com.integrador.ProyectoIntegradorV1.servicios.ILibroServicio;
-
+import com.integrador.ProyectoIntegradorV1.entidades.Categoria;
+import com.integrador.ProyectoIntegradorV1.servicios.ICategoriaServicio;
 
 @RestController
-@RequestMapping(path = "api/libro")
-public class LibroRestController {
+@RequestMapping(path = "api/categoria")
+public class CategoriaRestController {
 	
 	@Autowired
-	@Qualifier("LibroServicio")
-	private ILibroServicio libroServicio;
+	@Qualifier("CategoriaServicio")
+	private ICategoriaServicio categoriaServicio;
+	
 	
 	@GetMapping("/")
 	@CrossOrigin(origins = "*")
-	public List<Libro> getAll() throws Exception {
+	public List<Categoria> getAll() throws Exception {
 		
-		return ResponseEntity.status(200).body(libroServicio.findAll()).getBody();
+		return ResponseEntity.status(200).body(categoriaServicio.findAll()).getBody();
 	}
 	
-	@GetMapping("/todas")
+	
+	@GetMapping("/{id}")
 	@CrossOrigin(origins = "*")
-	public List<Libro> getAllByCategory(@RequestParam(value="categoria") String categoria) throws Exception {
-		return ResponseEntity.status(200).body(libroServicio.findAllByCategory(categoria)).getBody();
-	}
-	
-	
-	@GetMapping("{id}")
-	@CrossOrigin(origins = "*")
-	public Libro getOne(@PathVariable int id) throws Exception {
+	public Categoria getOne(@PathVariable int id) throws Exception {
 		
-		return ResponseEntity.status(200).body(libroServicio.findById(id)).getBody();
+		return ResponseEntity.status(200).body(categoriaServicio.findById(id)).getBody();
 		
 	}
 	
+	@GetMapping("/{nombre}")
+	public Categoria getByNombre(@PathVariable String nombre) throws Exception {
+		
+		return ResponseEntity.status(200).body(categoriaServicio.findByNombre(nombre)).getBody();
+	}
 	
 	@PostMapping("/")
 	@CrossOrigin(origins = "*")
-	public ResponseEntity save(@RequestBody Libro libro) {
+	public ResponseEntity save(@RequestBody Categoria categoria) {
 		
 		
 		try {
 			
-			return ResponseEntity.status(HttpStatus.OK).body(libroServicio.save(libro));
+			return ResponseEntity.status(HttpStatus.OK).body(categoriaServicio.save(categoria));
 			
 		} catch (Exception e) {
 			
@@ -71,12 +69,12 @@ public class LibroRestController {
 	
 	@PutMapping("/{id}")
 	@CrossOrigin(origins = "*")
-	public ResponseEntity update(@RequestBody Libro libro, @PathVariable int id) {
+	public ResponseEntity update(@RequestBody Categoria categoria, @PathVariable int id) {
 		
 		try {
 			
 			
-			return ResponseEntity.status(HttpStatus.FOUND).body(libroServicio.update(id, libro));
+			return ResponseEntity.status(HttpStatus.FOUND).body(categoriaServicio.update(id, categoria));
 			
 		} catch (Exception e) {
 			
@@ -92,7 +90,7 @@ public class LibroRestController {
 	public ResponseEntity delete(@PathVariable int id) {
 		
 		try {
-			libroServicio.delete(id);
+			categoriaServicio.delete(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");
 			
 		} catch (Exception e) {
