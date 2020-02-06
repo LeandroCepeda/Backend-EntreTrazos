@@ -65,6 +65,12 @@ public class LibroServicio implements ILibroServicio {
 	
 	
 	@Override
+	public Libro findByTitulo(String titulo) throws Exception {
+		return libroRepositorio.findByTitulo(titulo);
+	}
+	
+	
+	@Override
 	public List<Libro> findAllByCategory(String categoria) throws Exception {
 		try {
 			Categoria categoriaLibro = categoriaServicio.findByNombre(categoria);
@@ -169,40 +175,5 @@ public class LibroServicio implements ILibroServicio {
 			throw new Exception();
 		}
 	}
-
-
-
-	
-	
-	
-//	@Override
-//	public List<Libro> generarLista() {
-//		List<Libro> libros = new ArrayList<>();
-//		
-//		for (int i = 0; i <= 10; i++) {
-//			Libro libro = new Libro();
-//			libro.setId(i);
-//			libro.setIsbn(1 + i);
-//			libro.setPrecio(100 + i);
-//			libro.setTitulo("Titulo Libro #" + i);
-//			libro.setEstado("Estado Libro #" + i);
-//			libros.add(libro);
-//		}	
-//		
-//		return libros;
-//	}
-//
-//	@Override
-//	public Libro buscarLibroPorId(int id, List<Libro> libros) {
-//		for (Libro libro : libros) {
-//			if(libro.getId() == id) {
-//				return libro;
-//			}
-//		}
-//		return null;
-//	}
-	
-	
-	
 
 }

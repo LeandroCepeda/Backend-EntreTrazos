@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home}">
+<body th:replace="home :: body">
+
+<div layout:fragment="content">
+    <main>
+        <div class="container-fluid m-5 m-md-0">
+            <h1 class="mt-4">Compras</h1>
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Registro de Compras</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable"  cellspacing="0">
+                            <thead>
+                                <tr>
+				                     <th>Fecha</th>
+				                     <th>Total</th>
+				                     <th>Libro</th>
+				                     <th>Editar</th>
+				                     <th>Eliminar</th>
+
+				                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+				                     <th>Fecha</th>
+				                     <th>Total</th>
+				                     <th>Libro</th>
+				                     <th>Editar</th>
+				                     <th>Eliminar</th>
+				                </tr>
+                            </tfoot>
+                            <tbody>
+				                 <tr th:each="compra : ${compras}">
+				                     <td th:text="${compra.fecha}"></td>
+				                     <td th:text="${compra.total}"></td>
+				                     <td>
+               	                        <table class="table table-bordered">
+				                            <thead>
+				                            <tr>
+				                                <th>Titulo</th>
+				                                <th>Precio</th>
+				                                <th>Estado</th>
+				                                <th>Autor</th>
+				                            </tr>
+				                            </thead>
+				                            <tbody>
+				                            <tr th:each="detalle : ${compra.detalles}">
+				                                <td th:text="${detalle.libro?.titulo}"></td>
+				                                <td th:text="${detalle.libro?.precio}"></td>
+				                                <td th:text="${detalle.libro?.estado}"></td>
+				                                <td th:text="${detalle.libro?.autor?.nombre}"></td>
+				                            </tr>
+				                            </tbody>
+				                        </table>
+				                     </td>
+				                     <td>
+				                         <a class="btn btn-warning disabled" th:href="@{/compra/editar/} + ${compra.id}">Editar <i class="fa fa-edit"></i></a>
+				                     </td>
+				                     <td>
+				                         <form th:action="@{/compra/eliminar}" method="POST">
+				                             <input type="hidden" name="id" th:value="${compra.id}"/>
+				                             <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+				                             </button>
+				                         </form>
+				                     </td>
+				                 </tr>
+				             </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -3,10 +3,13 @@ package com.integrador.ProyectoIntegradorV1.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +27,10 @@ public class Compra {
 //	private Usuario usuario;
 //	
 //	private EstadoCompra estadoCompra;
-//	
-//	private List<DetalleCompra> detalles = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="fk_compra")
+	private List<DetalleCompra> detalles = new ArrayList<>();
 
 	
 	public Compra() {
@@ -39,7 +44,7 @@ public class Compra {
 		this.total = total;
 //		this.usuario = usuario;
 //		this.estadoCompra = estadoCompra;
-//		this.detalles = detalles;
+		this.detalles = detalles;
 	}
 
 
@@ -93,13 +98,13 @@ public class Compra {
 //	}
 //
 //
-//	public List<DetalleCompra> getDetalles() {
-//		return detalles;
-//	}
-//
-//
-//	public void setDetalles(List<DetalleCompra> detalles) {
-//		this.detalles = detalles;
-//	}
+	public List<DetalleCompra> getDetalles() {
+		return detalles;
+	}
+
+
+	public void setDetalles(List<DetalleCompra> detalles) {
+		this.detalles = detalles;
+	}
 	
 }

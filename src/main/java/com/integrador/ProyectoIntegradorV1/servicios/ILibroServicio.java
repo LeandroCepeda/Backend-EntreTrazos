@@ -10,6 +10,8 @@ public interface ILibroServicio  {
 	
 	public Libro findById(int id) throws Exception;
 	
+	public Libro findByTitulo(String titulo) throws Exception;
+	
 	public List<Libro> findAllByCategory(String categoria) throws Exception;
 	
 	public Libro save(Libro libro) throws Exception;

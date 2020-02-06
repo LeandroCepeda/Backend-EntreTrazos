@@ -1,9 +1,12 @@
 package com.integrador.ProyectoIntegradorV1.entidades;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +19,9 @@ public class DetalleCompra {
 	
 	private double precioUnitario;
 	
-//	private Libro libro;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_libro")
+	private Libro libro;
 	
 	
 	public DetalleCompra() {
@@ -26,7 +31,7 @@ public class DetalleCompra {
 	public DetalleCompra(int id, double precioUnitario, Libro libro) {
 		this.id = id;
 		this.precioUnitario = precioUnitario;
-//		this.libro = libro;
+		this.libro = libro;
 	}
 	
 	
@@ -50,13 +55,13 @@ public class DetalleCompra {
 	}
 
 	
-//	public Libro getLibro() {
-//		return libro;
-//	}
-//
-//
-//	public void setLibro(Libro libro) {
-//		this.libro = libro;
-//	}
+	public Libro getLibro() {
+		return libro;
+	}
+
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
 
 }
