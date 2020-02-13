@@ -1,4 +1,4 @@
-	package com.integrador.ProyectoIntegradorV1.controladoresRest;
+package com.integrador.ProyectoIntegradorV1.controladoresRest;
 
 import java.util.List;
 
@@ -14,52 +14,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.integrador.ProyectoIntegradorV1.entidades.Categoria;
-import com.integrador.ProyectoIntegradorV1.servicios.ICategoriaServicio;
+import com.integrador.ProyectoIntegradorV1.entidades.Usuario;
+import com.integrador.ProyectoIntegradorV1.servicios.IUsuarioServicio;
 
 @RestController
-@RequestMapping(path = "api/categoria")
-public class CategoriaRestController {
+@RequestMapping(value ="api/usuario")
+public class UsuarioRestController {
+
 	
 	@Autowired
-	@Qualifier("CategoriaServicio")
-	private ICategoriaServicio categoriaServicio;
+	@Qualifier("UsuarioServicio")
+	private IUsuarioServicio usuarioServicio;
 	
 	
 	@GetMapping("/")
 	@CrossOrigin(origins = "*")
-	public List<Categoria> getAll() throws Exception {
+	public List<Usuario> getAll() throws Exception {
 		
-		return ResponseEntity.status(200).body(categoriaServicio.findAll()).getBody();
+		return ResponseEntity.status(200).body(usuarioServicio.findAll()).getBody();
 	}
 	
 	
 	@GetMapping("/{id}")
 	@CrossOrigin(origins = "*")
-	public Categoria getOne(@PathVariable int id) throws Exception {
+	public Usuario getOne(@PathVariable int id) throws Exception {
 		
-		return ResponseEntity.status(200).body(categoriaServicio.findById(id)).getBody();
+		return ResponseEntity.status(200).body(usuarioServicio.findById(id)).getBody();
 		
-	}
-	
-	@GetMapping("/nombreCategoria") // http://localhost:8080/api/categoria/nombreCategoria?nombre=Novela Negra
-	@CrossOrigin(origins = "*")
-	public Categoria getByNombre(@RequestParam(value="nombre") String nombre) throws Exception {
-		
-		return ResponseEntity.status(200).body(categoriaServicio.findByNombre(nombre)).getBody();
 	}
 	
 	@PostMapping("/")
 	@CrossOrigin(origins = "*")
-	public ResponseEntity save(@RequestBody Categoria categoria) {
+	public ResponseEntity save(@RequestBody Usuario usuario) throws Exception {
 		
+		Usuario usuarioTemp = usuarioServicio.save(usuario); //devuelve null si ya hay un usuario con ese email
 		
 		try {
-			
-			return ResponseEntity.status(HttpStatus.OK).body(categoriaServicio.save(categoria));
+			if(usuarioTemp != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(usuarioTemp);
+			} else {
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\": \"Error. Ya existe un usuario con ese correo electronico\"}");
+			}
 			
 		} catch (Exception e) {
 			
@@ -71,12 +68,12 @@ public class CategoriaRestController {
 	
 	@PutMapping("/{id}")
 	@CrossOrigin(origins = "*")
-	public ResponseEntity update(@RequestBody Categoria categoria, @PathVariable int id) {
+	public ResponseEntity update(@RequestBody Usuario usuario, @PathVariable int id) {
 		
 		try {
 			
 			
-			return ResponseEntity.status(HttpStatus.FOUND).body(categoriaServicio.update(id, categoria));
+			return ResponseEntity.status(HttpStatus.FOUND).body(usuarioServicio.update(id, usuario));
 			
 		} catch (Exception e) {
 			
@@ -92,7 +89,7 @@ public class CategoriaRestController {
 	public ResponseEntity delete(@PathVariable int id) {
 		
 		try {
-			categoriaServicio.delete(id);
+			usuarioServicio.delete(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");
 			
 		} catch (Exception e) {

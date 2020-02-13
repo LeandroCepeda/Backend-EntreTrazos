@@ -10,6 +10,8 @@ public List<Usuario> findAll() throws Exception;
 	
 	public Usuario findById(int id) throws Exception;
 	
+	public Usuario findByEmail(String email) throws Exception;
+	
 	public Usuario save(Usuario usuario) throws Exception;
 	
 	public Usuario update(int id, Usuario usuario) throws Exception;

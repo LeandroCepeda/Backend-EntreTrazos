@@ -10,6 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -20,16 +25,23 @@ public class Libro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false, length = 150)
+	@NotBlank(message = "Debes especificar el ISBN")
+	@Size(min = 13, max = 13, message= "El isbn de tener 13 dígitos")
 	private String isbn;
 	
+	@NotEmpty(message = "Debes especificar el titulo")
 	private String titulo;
 	
+	@NotEmpty(message = "Debes especificar la editorial")
 	private String editorial;
 	
+	@NotNull(message = "Debes especificar el precio")
+    @Min(value = 0, message = "El precio mínimo es 0")
 	private double precio;
 	
+	@NotEmpty(message = "Debes especificar el estado")
 	private String estado;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_imagen")

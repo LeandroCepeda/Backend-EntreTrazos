@@ -93,7 +93,9 @@ public class LibroServicio implements ILibroServicio {
 	
 	@Override
 	public Libro save(Libro libro) throws Exception {
-		
+		if(findByTitulo(libro.getTitulo()) != null) {
+			return null;
+		}
 		try {
 			Autor autor = autorServicio.findByNombre(libro.getAutor().getNombre());
 			if(autor != null) {

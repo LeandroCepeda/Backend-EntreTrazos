@@ -8,8 +8,8 @@
     <main>
         <div class="container-fluid m-5 m-md-0">
             <h1 class="mt-4">Libros</h1>
-            <div th:classappend="'alert-' + (${mensaje!= null} ? success : null)" th:if="${mensaje != null}" 
-			     th:text="${mensaje}" class="alert"></div>
+            <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+            </div>
             <div class="card mb-4">
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Registro de Libros</div>
                 <div class="card-body">

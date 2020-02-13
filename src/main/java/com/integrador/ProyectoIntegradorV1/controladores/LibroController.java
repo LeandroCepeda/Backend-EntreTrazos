@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.integrador.ProyectoIntegradorV1.entidades.Autor;
-import com.integrador.ProyectoIntegradorV1.entidades.Categoria;
 import com.integrador.ProyectoIntegradorV1.entidades.Libro;
 import com.integrador.ProyectoIntegradorV1.servicios.IAutorServicio;
 import com.integrador.ProyectoIntegradorV1.servicios.ICategoriaServicio;
@@ -53,26 +51,17 @@ public class LibroController {
 	}
 	
 	@PostMapping(value = "/agregar")
-	public String guardarProducto(@ModelAttribute @Valid Libro libro, RedirectAttributes redir, BindingResult bindingResult) throws Exception {
+	public String guardarProducto(@ModelAttribute @Valid Libro libro, BindingResult bindingResult,RedirectAttributes redir) {
 		if(bindingResult.hasErrors()) {
 			return "libro/agregar-libro";
 		}
 		
-		//CODIGO PARA QUE NO ME REPITA AUTORES NI CATEGORIAS, CUANDO CREO LIBROS CON EL MISMO AUTOR/CATEGORIAS (TAMBIEN SE HACE CUANDO EDITO UN LIBRO)
 		try {
-			
-//			Autor autor = autorServicio.findByNombre(libro.getAutor().getNombre());
-//			if(autor != null) {
-//				libro.setAutor(autor);
-//			}
-//			
-//			Categoria categoria = categoriaServicio.findByNombre(libro.getCategoria().getNombre());
-//			if(categoria != null) {
-//				libro.setCategoria(categoria);	 
-//			}
-			
-			libroServicio.save(libro); //ME GUARDA EL LIBRO JUNTO CON EL AUTOR Y LA CATEGORIA
-			redir.addFlashAttribute("mensaje", "El producto se agrego correctamente");
+			if(libroServicio.save(libro) != null) {
+				redir.addFlashAttribute("mensaje", "El producto se agrego correctamente").addFlashAttribute("clase", "success");
+			} else {
+				redir.addFlashAttribute("mensaje", "Ya existe un titulo con ese nombre").addFlashAttribute("clase", "danger");;
+			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -109,7 +98,7 @@ public class LibroController {
 	}
 	
 	@PostMapping(value="/editar/{id}")
-	public String actualizarLibro(@ModelAttribute @Valid Libro libro,@PathVariable int id, BindingResult bindingResult, RedirectAttributes redir) {
+	public String actualizarLibro(@ModelAttribute @Valid Libro libro, BindingResult bindingResult, @PathVariable int id, RedirectAttributes redir) {
 		if(bindingResult.hasErrors()) {
 			return "libro/editar-libro";
 		}
@@ -130,9 +119,9 @@ public class LibroController {
 		
 		try {
 			libroServicio.delete(libro.getId());
-			redir.addFlashAttribute("mensaje", "Eliminado correctamente");
+			redir.addFlashAttribute("mensaje", "Eliminado correctamente").addFlashAttribute("clase", "success");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			redir.addFlashAttribute("mensaje", "No se pudo eliminar").addFlashAttribute("clase", "danger");
 			e.printStackTrace();
 		}
 		

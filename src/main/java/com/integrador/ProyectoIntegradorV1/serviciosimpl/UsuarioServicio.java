@@ -49,11 +49,18 @@ public class UsuarioServicio implements IUsuarioServicio {
 		}
 		
 	}
+	
+	@Override
+	public Usuario findByEmail(String email) throws Exception {
+		return usuarioRepositorio.findByEmail(email);
+	}
 
 	
 	@Override
 	public Usuario save(Usuario usuario) throws Exception {
-		
+		if(usuarioRepositorio.findByEmail(usuario.getEmail()) != null) {
+			return null;
+		}
 		try {
 			usuarioRepositorio.save(usuario);
 			return usuario;
@@ -104,5 +111,6 @@ public class UsuarioServicio implements IUsuarioServicio {
 			throw new Exception();
 		}
 	}
+
 
 }

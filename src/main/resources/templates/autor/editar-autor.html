@@ -8,7 +8,7 @@
 <div layout:fragment="content">
 	<main>
     <div class="container-fluid m-5 m-md-0">
-        <h2>Editar Autor</h2>
+        <h2 class="mt-4">Editar Autor</h2>
         <form th:object="${autor}" th:action="@{/autor/editar/} + ${autor.id}" method="post">
             <input type="hidden" th:field="*{id}">
             <div class="form-group">
