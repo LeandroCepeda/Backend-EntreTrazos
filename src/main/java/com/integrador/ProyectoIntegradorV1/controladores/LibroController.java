@@ -37,12 +37,6 @@ public class LibroController {
 	private ICategoriaServicio categoriaServicio;
 
 	
-	//PAGINA DE BIENVENIDA
-	@GetMapping(value ="")
-	public String bienvenido() {
-		return "bienvenido";
-	}
-	
 	@GetMapping(value="/agregar")
 	public String agregarLibro(Model model) {
 		model.addAttribute("libro", new Libro());
