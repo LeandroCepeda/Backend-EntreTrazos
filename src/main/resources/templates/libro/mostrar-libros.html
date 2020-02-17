@@ -6,7 +6,7 @@
 
 <div layout:fragment="content">
     <main>
-        <div class="container-fluid mt-5 m-md-0">
+        <div class="container-fluid m-5 m-md-0">
             <h1 class="mt-4">Libros</h1>
             <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
             </div>
@@ -25,7 +25,8 @@
                      <th>Autor</th>
                      <th>Categoría</th>
                      <th>Imagen</th>
-                     <th>Opcion</th>
+                     <th>Editar</th>
+                     <th>Eliminar</th>
                  </tr>
                             </thead>
                             <tfoot>
@@ -38,7 +39,8 @@
                      <th>Autor</th>
                      <th>Categoría</th>
                      <th>Imagen</th>
-                     <th>Opcion</th>
+                     <th>Editar</th>
+                     <th>Eliminar</th>
                  </tr>
                             </tfoot>
                             <tbody>
@@ -53,6 +55,8 @@
                      <td th:text="${libro.imagen?.url}"></td>
                      <td>
                          <a class="btn btn-warning" th:href="@{/libro/editar/} + ${libro.id}">Editar <i class="fa fa-edit"></i></a>
+                     </td>
+                     <td>
                          <form th:action="@{/libro/eliminar}" method="POST">
                              <input type="hidden" name="id" th:value="${libro.id}"/>
                              <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
