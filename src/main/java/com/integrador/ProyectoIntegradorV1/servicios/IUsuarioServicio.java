@@ -12,6 +12,8 @@ public List<Usuario> findAll() throws Exception;
 	
 	public Usuario findByEmail(String email) throws Exception;
 	
+	public Usuario findByEmailAndPassword(String email, String password);
+	
 	public Usuario save(Usuario usuario) throws Exception;
 	
 	public Usuario update(int id, Usuario usuario) throws Exception;

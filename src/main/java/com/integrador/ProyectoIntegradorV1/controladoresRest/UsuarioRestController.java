@@ -45,6 +45,23 @@ public class UsuarioRestController {
 		
 	}
 	
+	// http://localhost:8080/api/usuario/emailPassword?email=leandro@hotmail.com&password=123
+	// http://localhost:8080/api/usuario/emailPassword/leandro@hotmail.com/123/
+	@GetMapping("emailPassword/{email}/{password}")
+	public ResponseEntity getByEmailAndPassword(@PathVariable String email, @PathVariable String password) throws Exception {
+		Usuario usuario = usuarioServicio.findByEmailAndPassword(email, password);
+		
+		try {
+			if(usuario != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(usuario);
+			} else {
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\": \"Error. No existe un usuario con ese email o password\"}");
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\": \"Error. Please check the request, and try again later.\"}");
+		}
+	}
+	
 	@PostMapping("/")
 	@CrossOrigin(origins = "*")
 	public ResponseEntity save(@RequestBody Usuario usuario) throws Exception {

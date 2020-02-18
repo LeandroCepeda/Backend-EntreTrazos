@@ -54,6 +54,17 @@ public class UsuarioServicio implements IUsuarioServicio {
 	public Usuario findByEmail(String email) throws Exception {
 		return usuarioRepositorio.findByEmail(email);
 	}
+	
+	@Override
+	public Usuario findByEmailAndPassword(String email, String password) {
+		Usuario usuario = usuarioRepositorio.findByEmailAndPassword(email, password);
+		
+		if(usuario == null) {
+			return null;
+		} else {
+			return usuario;
+		}
+	}
 
 	
 	@Override
