@@ -5,8 +5,8 @@
 <body th:replace="home :: body">
 
 <div layout:fragment="content">
-    <main>
-        <div class="container-fluid m-5 m-md-0">
+    <main class="container-fluid">
+        <div class="">
             <h1 class="mt-4">Libros</h1>
             <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
             </div>

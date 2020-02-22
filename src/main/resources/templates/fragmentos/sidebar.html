@@ -90,13 +90,13 @@
 
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#compra" aria-expanded="false" aria-controls="collapseLayouts"
                     ><div class="sb-nav-link-icon"><i class="fas fa-money-check-alt"></i></div>
-                    COMPRAS
+                    VENTAS
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                     ></a>
                     <div class="collapse" id="compra" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" th:href="@{/compra/lista}"><div class="sb-nav-link-icon"><i class="far fa-trash-alt"></i></div>Eliminar Compra</a>
-                            <a class="nav-link" th:href="@{/compra/lista}"><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Compras</a></nav>
+                            <a class="nav-link" th:href="@{/compra/lista}"><div class="sb-nav-link-icon"><i class="far fa-trash-alt"></i></div>Eliminar Venta</a>
+                            <a class="nav-link" th:href="@{/compra/lista}"><div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>Mostrar Ventas</a></nav>
                     </div>
 
                 </div>
@@ -104,6 +104,6 @@
         </nav>
     </div>
     
-    <div id="layoutSidenav_content" layout:fragment="content">
+    <div id="layoutSidenav_content" class="container-fluid" layout:fragment="content">
     </div>
 </div>

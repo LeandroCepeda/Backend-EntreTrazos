@@ -119,7 +119,7 @@ public class UsuarioServicio implements IUsuarioServicio {
 			}
 			
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception();	
 		}
 	}
 
