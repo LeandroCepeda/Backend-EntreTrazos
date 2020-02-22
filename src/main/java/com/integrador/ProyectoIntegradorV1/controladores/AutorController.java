@@ -57,7 +57,7 @@ public class AutorController {
 		try {
 			model.addAttribute("autores", autorServicio.findAll());
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		
 		return "autor/mostrar-autores";
